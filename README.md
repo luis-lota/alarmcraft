@@ -1,7 +1,7 @@
 ### Thortful Front End Challenge
-### Alarmcraft app build in Angular 15
+### Alarmcraft app build in Angular 16
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0
 
 Technologies of the project are Bootstrap 5, Angular Material, Ngrx, Rxjs
 
@@ -12,6 +12,9 @@ The goal of the app is each human can create their own alarms and don't forget a
 In this app you will find the  option that make you create,update,delete and complete your due tasks enjoy and play around !
 
 PS : you can drag and drop your tasks :)
+
+### Live demo
+[Alarmcraft](https://main--steady-pegasus-332dbb.netlify.app/)
 
 ## Get started
 
