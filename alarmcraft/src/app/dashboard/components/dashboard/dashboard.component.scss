@@ -1,0 +1,70 @@
+@media (max-width: 767px) {
+  .min-height-container {
+    min-height: 300px;
+  }
+}
+
+.min-height-container {
+  min-height: 150px;
+}
+
+.custom-column {
+  min-height: 350px;
+}
+
+@media (max-width: 576px) {
+  h1.display-5 {
+    font-size: 20px;
+  }
+
+  p.lead {
+    font-size: 14px;
+  }
+}
+
+.btn-danger {
+  font-family: var(--rubik-font-family);
+  font-size: 13px;
+  color: rgba(240, 94, 78, 0.75);
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgba(240, 173, 78, 0.75);
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-danger:hover {
+  color: #FFF;
+  background: rgb(240, 173, 78, 0.75);
+  border: 2px solid rgba(240, 173, 78, 0.75);
+}
+
+.title {
+  font-family: var(--rubik-font-family);
+  font-size: var(--title-font-size);
+  font-weight: var(--title-font-weight);
+  color: var(--title-color)
+}
+
+.description {
+  font-family: var(--rubik-font-family);
+  font-weight: normal;
+  font-size: 16px;
+
+}
+
+.subtitle {
+  font-family: 'Rubik', sans-serif;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.white {
+  color: var(--title-color)
+}
+
+.container-title {
+  min-height: 50px;
+  max-height: 50px;
+}

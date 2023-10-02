@@ -1,0 +1,63 @@
+<ng-container>
+  <div>
+    <form form [formGroup]="formAlerts">
+      <div class="row mb-2">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="content" class="form-label description" for="content">
+              Content</label
+            >
+            <small id="content" class="form-text text-muted">
+              <sup class="text-danger">*</sup>
+            </small>
+            <input
+              type="text"
+              class="form-control text-start"
+              id="content"
+              formControlName="content"
+              [ngClass]="{
+                'is-valid': this.formAlerts.get('content')?.valid,
+                'is-invalid': this.formAlerts.get('content')?.invalid && submit
+              }"
+            />
+
+            <div
+              class="invalid-feedback d-block description"
+              *ngIf="this.formAlerts.get('content')?.invalid && submit"
+            >
+              Please select at least a name
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label for="dueDate" class="form-label description"> Due Date</label>
+            <input
+            type="date"
+            class="form-control"
+            id="startingDate"
+            placeholder="Select date"
+            formControlName="dueDate"
+            min="minDateDue"
+            [ngClass]="{
+              'is-valid': this.formAlerts.get('dueDate')?.valid,
+              'is-invalid': this.formAlerts.get('dueDate')?.invalid
+            }"
+            [value]="defaultDueDate"
+          />
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2 d-flex justify-content-end mt-2">
+        <div class="col-12">
+          <div class="d-flex justify-content-end">
+            <button class="description" mat-button (click)="onCancel()">Back</button>
+            <button class="description" mat-button (click)="onSubmit()">close</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>

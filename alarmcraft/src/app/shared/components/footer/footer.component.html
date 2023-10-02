@@ -1,0 +1,20 @@
+<footer>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-auto mb-2 mb-md-0 text-center text-md-left">
+        <i class="fas fa-clock fa-1x icon"></i>
+      </div>
+
+      <div class="col-12 col-md-auto mb-2 mb-md-0 text-center text-md-left">
+        <span *ngIf="recentAlarmAdd && recentAlarmAdd.content" class="description">
+          It was created recently alarm with the name of -
+          <b>{{ recentAlarmAdd.content }}</b></span
+        >
+
+        <span *ngIf="recentAlarmAdd === null" class="description">
+          Dont have any alarm create recently!
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

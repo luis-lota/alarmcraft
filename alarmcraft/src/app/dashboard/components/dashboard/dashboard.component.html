@@ -1,0 +1,145 @@
+<div
+  class="d-flex flex-column bg-light"
+  style="min-height: 100vh"
+  *ngIf="{
+    results: todoList,
+    loading: (loading$ | async),
+    loadingCompleted: (loadingCompleteTasks$ | async),
+    completed: completedTasks,
+    uncompleted: incompleteTasks
+  } as Alerts"
+>
+  <main>
+    <section>
+      <div class="bg-danger">
+        <div
+          class="col-12 d-flex flex-column align-items-center justify-content-center text-center"
+        >
+          <div class="jumbotron mt-4">
+            <h1 class="display-4 title">Welcome to AlarmCraft</h1>
+            <p class="lead description white">
+              Your go-to platform for managing tasks and alarms effectively.
+            </p>
+            <hr class="my-4 white" />
+            <p class="description white">
+              With AlarmCraft, you can easily create and organize alarms.
+            </p>
+
+            <p class="description white">
+              Explore the features, you can create, update,delete and track your
+              complete alarms! (if you did a mistake you can undo!)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mt-5 mb-5">
+        <div
+          class="row d-flex"
+          *ngIf="Alerts.loading || Alerts.loadingCompleted"
+        >
+          <div
+            class="d-flex col-12 justify-content-center align-items-center"
+            style="height: 20vh;"
+          >
+            <app-spinner></app-spinner>
+          </div>
+        </div>
+        <div
+          class="row mx-0"
+          *ngIf="!Alerts.loading && !Alerts.loadingCompleted"
+        >
+          <div
+            class="col-lg-6 col-12 custom-column d-flex flex-column"
+            cdkDropList
+            #list="cdkDropList"
+            [cdkDropListConnectedTo]="[confirmados]"
+            [cdkDropListData]="incompleteTasks"
+            (cdkDropListDropped)="drop($event, todoColumnId)"
+          >
+            <div class="d-flex align-items-center col-xs-12 container-title">
+              <h3 class="my-0 lead my-4 subtitle">
+                My alarms {{ incompleteTasks.length || "" }}
+              </h3>
+              <div class="d-flex align-items-center" style="margin-left: 5px">
+                <button
+                  type="button"
+                  class="btn btn-danger description"
+                  (click)="openDialog()"
+                >
+                  Adding alarm
+                </button>
+              </div>
+            </div>
+
+            <div class="row" *ngFor="let alert of incompleteTasks">
+              <div class="col-12">
+                <app-card
+                  [data]="alert"
+                  (alertDelete)="onHandlerDelete($event)"
+                  (alertEdit)="onHandlerEdit($event)"
+                  [complete]="false"
+                  (changeToCompleteTaks)="onHandlerChange($event)"
+                ></app-card>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-lg-6 col-12 custom-column mt-5 mt-lg-0 d-flex flex-column"
+            cdkDropList
+            #confirmados="cdkDropList"
+            [cdkDropListConnectedTo]="[list]"
+            [cdkDropListData]="completedTasks"
+            (cdkDropListDropped)="drop($event, completedColumnId)"
+          >
+            <div
+              class="d-flex justify-content-start justify-content-lg-center align-items-center container-title"
+            >
+              <h3 class="my-0 lead my-4 subtitle">
+                Completed alarms {{ completedTasks.length || "" }}
+              </h3>
+            </div>
+
+            <div class="row" *ngFor="let alert of completedTasks">
+              <div class="col-12">
+                <app-card
+                  [data]="alert"
+                  [complete]="true"
+                  (alertUndo)="onHandlerUndo($event)"
+                ></app-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #modalTemplate let-modal>
+        <div class="modal-header p-4">
+          <p class="modal-title h3 ">
+            {{ alertForm !== null ? "Edit your alarm" : "Add your alarm" }}
+          </p>
+          <button
+            type="button"
+            class="close btn fs-4"
+            aria-label="Close"
+            (click)="modal.dismiss()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-4">
+          <ng-container>
+            <app-modal-alerts
+              [data]="alertForm"
+              (formUserAlertsSubmit)="onHandlerSubmit($event)"
+            ></app-modal-alerts>
+          </ng-container>
+        </div>
+      </ng-template>
+    </section>
+  </main>
+
+  <div class="bg-light mt-auto border-top p-4">
+    <app-footer [recentAlarmAdd]="recentedAddAlert"></app-footer>
+  </div>
+</div>

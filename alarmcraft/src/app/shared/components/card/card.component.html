@@ -1,0 +1,62 @@
+<div
+  class="card mb-2 mt-2 card-container "
+  cdkDrag
+>
+  <div class="card-body flex-column d-flex">
+    <div class="d-flex justify-content-between p-md-1">
+      <div class="d-flex flex-row">
+        <div class="align-self-center description">
+          <p>{{ data.content }}</p>
+        </div>
+      </div>
+
+      <div class="align-self-center" *ngIf="!complete; else notComplete">
+        <i
+          class="fa-regular fa-trash-can fa-1x pointer icon-hover icon-size  "
+          data-bs-toggle="tooltip"
+          style="color: red; "
+          (click)="eventDelete()"
+        ></i>
+        <i
+          class="fa-regular fa-pen-to-square fa-2x pointer icon-hover icon-size "
+        
+          (click)="eventEdit()"
+        ></i>
+
+        <i
+          class="fa-regular fa-circle-check fa-2x pointer icon-hover icon-size "
+          
+          (click)="onComplete()"
+        ></i>
+      </div>
+
+      <ng-template #notComplete>
+        <div>
+          <i
+            class="fa-solid fa-rotate-left fa-2x pointer icon-hover icon-size "
+           
+            (click)="onUndo()"
+          ></i>
+          <i class="fa-solid fa-circle-check fa-2x pointer icon-hover icon-size "></i>
+        </div>
+      </ng-template>
+    </div>
+    <div class="row d-flex footer mt-auto" *ngIf="!complete">
+      <div class="align-self-center d-flex">
+        <p class="description">
+          <i
+            class="fas fa-exclamation-triangle fa-2x icon-size "
+          
+            *ngIf="data !== null && data.due !== null"
+          ></i>
+
+          {{
+            data !== null && data.due !== undefined
+              ? (data.due.date | date : "dd-MM-yyyy")
+              : "--"
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

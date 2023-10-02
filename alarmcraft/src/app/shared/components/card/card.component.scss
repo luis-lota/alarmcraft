@@ -1,0 +1,31 @@
+.pointer {
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.icon-hover:hover {
+  transform: scale(1.2);
+}
+
+.description {
+  font-family: 'Rubik', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+
+}
+
+.card-container {
+  min-height: 100px;
+  max-height: 100px
+}
+
+.icon-size {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
