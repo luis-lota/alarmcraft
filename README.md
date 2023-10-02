@@ -23,7 +23,7 @@ PS : you can drag and drop your tasks :)
 
 ```shell
 git clone https://github.com/luis-lota/alarmcraft.git
-cd alert-app
+cd alarmcraft
 ```
 
 
