@@ -20,3 +20,17 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(3b3a46e7-6eaf-4081-8786-5318774926be)'
+    appType: 'webApp'
+    appName: 'teating'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(3b3a46e7-6eaf-4081-8786-5318774926be)'
+    appType: 'webApp'
+    WebAppName: 'test-app'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
